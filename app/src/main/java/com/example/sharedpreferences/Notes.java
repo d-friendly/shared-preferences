@@ -29,15 +29,9 @@ public class Notes extends AppCompatActivity{
         setContentView(R.layout.activity_notes);
 
         TextView tv = (TextView) findViewById(R.id.textView);
-        //Intent intent = getIntent();
         SharedPreferences sharedPreferences = getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
 
         String name = sharedPreferences.getString("username","");
-//        if(sharedPreferences.getString("username","").equals("")) {
-//            name = sharedPreferences.getString("username","");
-//        }else{
-//            //name = intent.getStringExtra("name");
-//        }
         tv.setText("Welcome " + name + "!");
 
         //get SQLLITE DATATBASE
@@ -57,13 +51,13 @@ public class Notes extends AppCompatActivity{
 
         //user list view to dipslay notes on screen
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,displayNotes);
-        ListView listView = findViewById(R.id.listView);
+        ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), Notes.class);
+                Intent intent = new Intent(getApplicationContext(), ThirdActivity.class);
                 intent.putExtra("noteid",position);
                 startActivity(intent);
             }
